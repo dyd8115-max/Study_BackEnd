@@ -1,0 +1,31 @@
+{{>layouts/header}}
+
+<style>
+    .table td {
+        border-bottom: 1px dashed #bbbbbb; /* 점선 색상 및 스타일 */
+    }
+</style>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {{#articleList}}
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
+        </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+<a href="/articles">새로 입력</a>
+
+{{>layouts/footer}}

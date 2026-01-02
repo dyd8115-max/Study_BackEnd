@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>게시판 실습</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background: #f2f2f2; }
+        form { border: 1px solid #ccc; padding: 16px; }
+        input, textarea, button { width: 100%; margin-top: 8px; padding: 8px; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h1>게시판</h1>
+
+<!-- 게시글 목록 (백엔드에서 데이터 바인딩 연습용) -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 예시 데이터 (나중에 서버에서 렌더링) -->
+    <tr>
+        <td>1</td>
+        <td><a href="/articles/1">첫 번째 글</a></td>
+        <td>admin</td>
+        <td>2025-01-01</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td><a href="/articles/2">두 번째 글</a></td>
+        <td>user</td>
+        <td>2025-01-02</td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 글 작성 폼 (POST 요청 실습용) -->
+<form method="post" action="/Study">
+    <h2>글 작성</h2>
+
+    <label>제목</label>
+    <input type="text" name="titles" placeholder="제목 입력" />
+
+    <label>작성자</label>
+    <input type="text" name="author" placeholder="작성자 이름" />
+
+    <label>내용</label>
+    <textarea name="content" rows="5" placeholder="내용 입력"></textarea>
+
+    <button type="submit">등록</button>
+</form>
+
+</body>
+</html>
