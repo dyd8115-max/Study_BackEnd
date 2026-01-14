@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>학생 목록</title>
+    <style>
+        /* 스타일은 기존과 동일 */
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f6f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-top: 80px; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #333; padding: 15px 30px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+        .navbar .logo { color: white; font-size: 20px; font-weight: bold; text-decoration: none; }
+        .navbar .menu { list-style: none; margin: 0; padding: 0; display: flex; }
+        .navbar .menu li { margin-left: 20px; }
+        .navbar .menu a { color: #ddd; text-decoration: none; font-size: 16px; transition: color 0.3s; }
+        .navbar .menu a:hover { color: #ffffff; }
+
+        .container { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 80%; max-width: 800px; margin-top: 20px; }
+        h2 { text-align: center; margin-bottom: 20px; color: #333; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f1f1f1; }
+
+        td a { text-decoration: none; color: #333; font-weight: bold; }
+        td a:hover { color: #4CAF50; text-decoration: underline; }
+
+        .no-data { text-align: center; padding: 20px; color: #666; }
+
+        /* ★★★ [추가된 버튼 스타일] ★★★ */
+        .btn-area {
+            text-align: center; /* 버튼 가운데 정렬 */
+            margin-top: 20px;
+        }
+        .btn-new {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50; /* 초록색 배경 */
+            color: white;               /* 흰색 글씨 */
+            text-decoration: none;      /* 밑줄 제거 */
+            border-radius: 5px;         /* 둥근 모서리 */
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-new:hover {
+            background-color: #45a049; /* 마우스 올렸을 때 색상 */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#" class="logo">학생 관리 시스템</a>
+    <ul class="menu">
+        <li><a href="/Study/New">입력</a></li>
+        <li><a href="/Study/List">목록</a></li>
+        <li><a href="#">로그인</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>전체 학생 목록</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>학교</th>
+            <th>학번</th>
+            <th>이름</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {{#articleList}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{school}}</td>
+                <td>{{number}}</td>
+                <td>
+                    <a href="/Study/{{id}}">{{name}}</a>
+                </td>
+            </tr>
+        {{/articleList}}
+
+        </tbody>
+    </table>
+
+    {{^articleList}}
+        <div class="no-data">
+            등록된 학생 정보가 없습니다.
+        </div>
+    {{/articleList}}
+
+    <div class="btn-area">
+        <a href="/Study/New" class="btn-new">새로 입력</a>
+    </div>
+
+</div>
+
+</body>
+</html>

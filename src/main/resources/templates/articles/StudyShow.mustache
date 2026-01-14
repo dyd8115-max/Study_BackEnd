@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상세 정보 확인</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f6f8; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-top: 80px; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #333; padding: 15px 30px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+        .navbar .logo { color: white; font-size: 20px; font-weight: bold; text-decoration: none; }
+        .navbar .menu { list-style: none; margin: 0; padding: 0; display: flex; }
+        .navbar .menu li { margin-left: 20px; }
+        .navbar .menu a { color: #ddd; text-decoration: none; font-size: 16px; transition: color 0.3s; }
+        .navbar .menu a:hover { color: #ffffff; }
+        .container { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 80%; max-width: 800px; margin-top: 20px; }
+        h2 { text-align: center; margin-bottom: 20px; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; width: 25%; }
+        .btn-group { margin-top: 20px; text-align: center; }
+        .btn { display: inline-block; padding: 10px 20px; margin: 5px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn-list { background-color: #333; color: white; }
+        .btn-new { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#" class="logo">학생 관리 시스템</a>
+    <ul class="menu">
+        <li><a href="/Study/New">입력</a></li>
+        <li><a href="/List">목록</a></li>
+        <li><a href="#">로그인</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>등록된 정보 확인</h2>
+
+    {{#article}}
+        <table>
+            <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{id}}</td> </tr>
+            <tr>
+                <th>학교</th>
+                <td>{{school}}</td>
+            </tr>
+            <tr>
+                <th>학번</th>
+                <td>{{number}}</td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td>{{name}}</td>
+            </tr>
+            </tbody>
+        </table>
+    {{/article}}
+    {{^article}}
+        <div style="text-align: center; padding: 20px; color: red;">
+            데이터를 불러오지 못했습니다.
+        </div>
+    {{/article}}
+
+    <div class="btn-group">
+        <a href="/Study/List" class="btn btn-list">목록 보기</a>
+        <a href="/Study/New" class="btn btn-new">새로 입력</a>
+    </div>
+</div>
+
+</body>
+</html>
