@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity//엔티티
-@NoArgsConstructor
+@NoArgsConstructor//기본생성자 룸복
 @AllArgsConstructor//생성자 롬복
 @ToString//투스트링 롬복
-@Getter
+@Getter//GetId사용가능
 public class ArticleStudy {
 
     @Id//판단번호

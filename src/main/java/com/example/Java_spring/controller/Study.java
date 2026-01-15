@@ -19,7 +19,7 @@
     import java.util.Optional;
 
     @Slf4j//log.info 사용가능
-    @Controller
+    @Controller//컨트롤러
     public class Study {
 
         @Autowired//따로 객체셍성없이 사용가능(의존성 주입)
@@ -39,28 +39,30 @@
             ArticleStudy article=form.toEntity();//엔티티 생성
 
             ArticleStudy saved=studyRepostory.save(article);//리포지토리 저장
-            return "redirect:/Study/" + saved.getId();
+
+            return "redirect:/Study/" + saved.getId();//개별창 이동
+
         }
 
-        @GetMapping("/Study/{id}")
+        @GetMapping("/Study/{id}")// 개별조회
         public String show(@PathVariable Long id, Model model)//id 모델
         {
 
             ArticleStudy articleStudy=studyRepostory.findById(id).orElse(null);//찾은 값이 있으면 저장 없으면 null
 
-            model.addAttribute("article", articleStudy);
+            model.addAttribute("article", articleStudy);//DB에 값 추가
 
             return "articles/StudyShow";
         }
 
-        @GetMapping("/Study/List")
+        @GetMapping("/Study/List") //전체조회
         public String List(Model model)
         {
-            Iterable<ArticleStudy> articleStudyList=studyRepostory.findAll();
+            Iterable<ArticleStudy> articleStudyList=studyRepostory.findAll();//findAll형태에 맞게 변환
 
             model.addAttribute("articleList", articleStudyList);
 
-            return "/articles/StudyListAll";
+            return "/articles/StudyListAll";//전체목록 보여주기
         }
 
 
