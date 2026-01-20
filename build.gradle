@@ -34,6 +34,8 @@ dependencies {
 
     // 4. 테스트 (존재하지 않는 test 라이브러리 제거하고 표준 starter-test 하나로 통합)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
