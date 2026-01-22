@@ -52,14 +52,20 @@ class CommentRepositoryTest {
     @DisplayName("특정 닉네임의 모든 댓글 조회")
     void findByNickname() {
 
-        String nickname="Park";
+        String nickname="a";
 
         List<Comment> comments=commentRepository.findByNickname(nickname);
 
         Comment a=new Comment(1L, new Article(4L, "좋아하는 영화", "ㅈㄱㄴ"),
-        nickname, "a");
+        nickname, "아이언맨3");
 
+        Comment b=new Comment(3L, new Article(5L, "좋아하는 동물", "ㅈㄱㄴ"),
+                nickname, "강아지");
 
+        Comment c=new Comment(8L, new Article(6L, "좋아하는 음식", "ㅈㄱㄴ"),
+                nickname, "피자");
 
+        List<Comment> expected=Arrays.asList(a, b, c);
+        assertEquals(expected.toString(), comments.toString(), "댓글출력");
     }
 }

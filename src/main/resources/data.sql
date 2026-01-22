@@ -19,4 +19,4 @@ INSERT INTO comment(article_id, nickname, body) VALUES(5, 'c', '고양이!');
 INSERT INTO comment(article_id, nickname, body) VALUES(5, 'd', '카피바라');
 INSERT INTO comment(article_id, nickname, body) VALUES(6, 'd', '떡볶이');
 INSERT INTO comment(article_id, nickname, body) VALUES(6, 'c', '초밥');
-INSERT INTO comment(article_id, nickname, body) VALUES(6, 'a', ' 피자');
+INSERT INTO comment(article_id, nickname, body) VALUES(6, 'a', '피자');
