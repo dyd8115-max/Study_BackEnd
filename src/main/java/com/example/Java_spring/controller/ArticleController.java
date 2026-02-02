@@ -2,8 +2,10 @@ package com.example.Java_spring.controller;
 
 
 import com.example.Java_spring.dto.ArticleForm;
+import com.example.Java_spring.dto.CommentDto;
 import com.example.Java_spring.entity.Article;
 import com.example.Java_spring.repository.ArticleRepository;
+import com.example.Java_spring.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -22,7 +24,8 @@ public class ArticleController {
 
     @Autowired
     private ArticleRepository articleRepository;
-    //
+    @Autowired
+    private CommentService commentService;
 
 
     @GetMapping("/articles")//새로입력
@@ -50,7 +53,10 @@ public class ArticleController {
 
         Article articleEntity=articleRepository.findById(id).orElse(null);
 
+        List<CommentDto> commentDtos=commentService.comments(id);
+
         model.addAttribute("article", articleEntity);
+        model.addAttribute("commentDtos", commentDtos);
         return "articles/show";
     }
 
