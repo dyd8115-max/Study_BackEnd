@@ -2,11 +2,13 @@ package com.example.Java_spring.service;
 
 
 import com.example.Java_spring.dto.CommentDto;
+import com.example.Java_spring.entity.Article;
 import com.example.Java_spring.entity.Comment;
 import com.example.Java_spring.repository.ArticleRepository;
 import com.example.Java_spring.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +42,17 @@ public class CommentService {
                 .stream()
                 .map(comment -> CommentDto.createCommentDto(comment))
                 .collect(Collectors.toList());
+    }
+
+
+    @Transactional
+    public CommentDto create(Long articleId, CommentDto dto) {
+        Article article=articleRepository.findById(articleId)
+        .orElseThrow(()->new IllegalArgumentException("댓글 실패"+"댓글 게시글이 없습니다."));
+
+        Comment comment = Comment.createComment(dto, article);
+        Comment created=commentRepository.save(comment);
+        return CommentDto.createCommentDto(created);
+
     }
 }
