@@ -67,4 +67,15 @@ public class CommentService {
         Comment updated=commentRepository.save(target);
         return CommentDto.createCommentDto(updated);
     }
+
+    @Transactional
+    public CommentDto delete(Long id) {
+    Comment target=commentRepository.findById(id)
+            .orElseThrow(()->new IllegalArgumentException("댓글 삭제 실패"));
+    commentRepository.delete(target);
+
+    return CommentDto.createCommentDto(target);
+
+
+    }
 }
