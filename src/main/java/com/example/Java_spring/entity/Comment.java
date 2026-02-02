@@ -49,4 +49,17 @@ public class Comment {
                 dto.getBody()
         );
     }
+
+    public void patch(CommentDto dto) {
+        // 1. ID 예외 처리 (수정하려는 대상과 데이터의 ID가 일치하는지 확인)
+        if (dto.getId() != null && !this.id.equals(dto.getId())) {
+            throw new IllegalArgumentException("댓글 수정 실패: 잘못된 ID가 입력되었습니다.");
+        }
+
+        // 2. 내용 갱신 (기존 로직 유지)
+        if (dto.getNickname() != null)
+            this.nickname = dto.getNickname();
+        if (dto.getBody() != null)
+            this.body = dto.getBody();
+    }
 }

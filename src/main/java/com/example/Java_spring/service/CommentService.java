@@ -55,4 +55,16 @@ public class CommentService {
         return CommentDto.createCommentDto(created);
 
     }
+
+
+    @Transactional
+    public CommentDto update(Long id, CommentDto dto) {
+        Comment target=commentRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("댓글 수정 실패"));
+
+        target.patch(dto);
+
+        Comment updated=commentRepository.save(target);
+        return CommentDto.createCommentDto(updated);
+    }
 }
