@@ -1,0 +1,67 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">닉네임</label>
+                <input type="text" class="form-control" id="new-comment-nickname">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">댓글내용</label>
+                <textarea type="text" class="form-control" rows="3" id="new-comment-body"></textarea>
+            </div>
+
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/article}}
+
+            <button type="button" class="btn btn-primary" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+
+    <script>
+        {
+            // 1. 버튼 선택
+            const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+            // 2. 버튼 클릭 이벤트 감지
+            commentCreateBtn.addEventListener("click", function() {
+
+                // 3. 댓글 객체 생성 (입력값 수집)
+                const comment = {
+                    nickname: document.querySelector("#new-comment-nickname").value,
+                    body: document.querySelector("#new-comment-body").value,
+                    articleId: document.querySelector("#new-comment-article-id").value
+                };
+
+                // 4. 데이터 확인 (디버깅용)
+                console.log(comment);
+
+                // 5. 비어있는 값이 있는지 체크 (유효성 검사 추가)
+                if (!comment.nickname || !comment.body) {
+                    alert("닉네임과 내용을 모두 입력해주세요.");
+                    return;
+                }
+
+                // 6. API 호출 (fetch)
+                const url = "/api/articles/" + comment.articleId + "/comments";
+
+                fetch(url, {
+                    method: "POST",          // HTTP 메서드
+                    headers: {
+                        "Content-Type": "application/json" // 데이터 형식 지정
+                    },
+                    body: JSON.stringify(comment) // 객체를 JSON 문자열로 변환하여 전송
+                }).then(response => {
+                    // 7. 응답 처리
+                    const msg = (response.ok) ? "댓글이 등록됐습니다." : "댓글 등록 실패!";
+                    alert(msg);
+
+                    // 성공 시 화면 새로고침
+                    if (response.ok) {
+                        window.location.reload();
+                    }
+                });
+            }); // addEventListener 끝
+        }
+    </script>
+</div>
